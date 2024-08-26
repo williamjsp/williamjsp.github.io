@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quer ir ao culto dos jovens?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        button#sim {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        button#nao {
+            background-color: #f44336;
+            color: white;
+        }
+
+        button#nao:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quer ir ao culto dos jovens?</h1>
+    <div class="buttons">
+        <button id="sim">Sim</button>
+        <button id="nao">Não</button>
+    </div>
+
+    <script>
+        const btnNao = document.getElementById('nao');
+        const btnSim = document.getElementById('sim');
+
+        btnSim.addEventListener('click', () => {
+            alert('Eu sabia que você ia dizer sim. Nesse Sabado as 15 horas, Espero você la!😍 ');
+        });
+
+        function moverBotao() {
+            const randomX = Math.floor(Math.random() * (window.innerWidth - btnNao.clientWidth));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - btnNao.clientHeight));
+            btnNao.style.position = 'absolute';
+            btnNao.style.left = `${randomX}px`;
+            btnNao.style.top = `${randomY}px`;
+        }
+
+        btnNao.addEventListener('mouseover', moverBotao);
+        btnNao.addEventListener('click', moverBotao);
+    </script>
+</body>
+</html>
