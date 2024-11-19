@@ -1,0 +1,204 @@
+/* Reset de estilos padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos principais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin: 10px 0;
+}
+
+/* Área de Assentos */
+.assento-area {
+    margin-bottom: 30px;
+}
+
+/* Contêiner das fileiras */
+.fileiras {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo para as fileiras */
+.fileira {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Letras para as fileiras */
+.letra {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Estilo para os assentos */
+.assento {
+    width: 60px;
+    height: 60px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+    font-size: 1.2em;
+}
+
+.assento:hover {
+    background-color: #c0c0c0;
+}
+
+.assento.selecionado {
+    background-color: #4caf50;
+    color: white;
+}
+
+/* Botão */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+/* Reset de estilos padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos principais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin: 10px 0;
+}
+
+/* Área de Assentos */
+.assento-area {
+    margin-bottom: 30px;
+}
+
+/* Contêiner das fileiras */
+.fileiras {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo para as fileiras */
+.fileira {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Letras para as fileiras */
+.letra {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Estilo para os assentos */
+.assento {
+    width: 60px;
+    height: 60px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+    font-size: 1.2em;
+}
+
+.assento:hover {
+    background-color: #c0c0c0;
+}
+
+.assento.selecionado {
+    background-color: #4caf50;
+    color: white;
+}
+
+/* Botão */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
