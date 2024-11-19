@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Assentos - Igreja</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Seleção de Assentos</h1>
+        
+        <div class="assento-area">
+            <h2>Mezanino</h2>
+            <div class="assentos" id="mezanino">
+                <!-- Assentos do Mezanino -->
+                <div class="assento" onclick="selecionarAssento('mezanino', 0)">1</div>
+                <div class="assento" onclick="selecionarAssento('mezanino', 1)">2</div>
+                <div class="assento" onclick="selecionarAssento('mezanino', 2)">3</div>
+                <div class="assento" onclick="selecionarAssento('mezanino', 3)">4</div>
+                <div class="assento" onclick="selecionarAssento('mezanino', 4)">5</div>
+            </div>
+        </div>
+
+        <div class="assento-area">
+            <h2>Parte Inferior</h2>
+            <div class="assentos" id="inferior">
+                <!-- Assentos da Parte Inferior -->
+                <div class="assento" onclick="selecionarAssento('inferior', 0)">1</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 1)">2</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 2)">3</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 3)">4</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 4)">5</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 5)">6</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 6)">7</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 7)">8</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 8)">9</div>
+                <div class="assento" onclick="selecionarAssento('inferior', 9)">10</div>
+            </div>
+        </div>
+
+        <button onclick="confirmarSelecao()">Confirmar Seleção</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
