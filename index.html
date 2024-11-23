@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Assentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        h1 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .layout {
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Espaçamento entre as áreas esquerda e direita */
+        }
+        .row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .row-label {
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+        .seat {
+            width: 20px;
+            height: 20px;
+            margin: 1px;
+            display: inline-block;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .seat.selected {
+            background-color: orange;
+        }
+        .seat.confirmed {
+            background-color: red;
+            cursor: not-allowed;
+        }
+        .seat:hover:not(.confirmed) {
+            background-color: #45a049;
+        }
+        .confirm-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .confirm-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .divider {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-top: 2px solid #333;
+            padding-top: 10px;
+        }
+        .divider span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            background-color: #f4f4f4;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerenciamento de Assentos - Área Principal</h1>
+    
+    <!-- Barra divisória com o texto "Altar Louvor" -->
+    <div class="divider">
+        <span>Altar Louvor</span>
+    </div>
+
+    <div id="layout"></div>
+    <button id="confirmButton" class="confirm-button" disabled>Confirmar Seleção</button>
+
+    <script>
+        let selectedSeats = []; // Armazena as cadeiras selecionadas
+
+        // Função para renderizar fileiras de assentos
+        function renderSeats(rowsConfig, startNumber = 1) {
+            const rowLabels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Letras para fileiras
+            let html = '';
+            let currentNumber = startNumber;
+
+            rowsConfig.forEach((cols, rowIndex) => {
+                html += '<div class="row">';
+                html += `<div class="row-label">${rowLabels[rowIndex]}</div>`; // Letra da fileira
+
+                for (let i = 0; i < cols; i++) {
+                    const seatId = `${rowLabels[rowIndex]}-${currentNumber}`;
+                    html += `<div class="seat" id="${seatId}" onclick="selectSeat('${seatId}')">${currentNumber}</div>`;
+                    currentNumber++; // Incrementa o número dentro da mesma fileira
+                }
+
+                currentNumber = startNumber; // Reinicia o número ao mudar de fileira
+                html += '</div>';
+            });
+
+            return { html, nextNumber: currentNumber };
+        }
+
+        // Função para selecionar ou desmarcar assentos
+        function selectSeat(seatId) {
+            const seat = document.getElementById(seatId);
+            if (seat.classList.contains('confirmed')) return; // Não faz nada se já estiver confirmado
+
+            if (seat.classList.contains('selected')) {
+                seat.classList.remove('selected');
+                selectedSeats = selectedSeats.filter(s => s !== seatId);
+            } else {
+                seat.classList.add('selected');
+                selectedSeats.push(seatId);
+            }
+
+            document.getElementById('confirmButton').disabled = selectedSeats.length === 0;
+        }
+
+        // Função para confirmar a seleção
+        function confirmSelection() {
+            selectedSeats.forEach(seatId => {
+                const seat = document.getElementById(seatId);
+                seat.classList.remove('selected');
+                seat.classList.add('confirmed');
+            });
+            selectedSeats = [];
+            document.getElementById('confirmButton').disabled = true;
+        }
+
+        // Renderizar layout completo com configuração das fileiras
+        function renderLayout() {
+            const layout = document.getElementById('layout');
+
+            // Configuração das fileiras
+            const leftConfig = [7, 7, 6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 7, 6, 7, 7]; // Configuração da esquerda
+            const rightConfig = [7, 7, 6, 6, 7, 7, 7, 7, 7, 6, 7, 7, 6, 5, 5]; // Configuração da direita
+
+            // Renderizar a área esquerda
+            const leftArea = renderSeats(leftConfig, 1);
+            const leftHtml = `<div class="section">${leftArea.html}</div>`;
+
+            // Renderizar a área direita
+            const rightArea = renderSeats(rightConfig, 8); // Reinicia o número a partir de 8 para a direita
+            const rightHtml = `<div class="section">${rightArea.html}</div>`;
+
+            // Adicionar a fila Q de 9 cadeiras abaixo da fila P, centralizada
+            const qConfig = [9]; // Fila Q com 9 cadeiras
+            const qArea = renderSeats(qConfig, 1); // Recomeçar numeração para a fila Q
+            const qHtml = `<div class="section" style="display: flex; justify-content: center;">${qArea.html}</div>`;
+
+            // Combinar ambas as áreas com a fila Q
+            layout.innerHTML = `<div class="layout">${leftHtml}${rightHtml}</div>${qHtml}`;
+        }
+
+        // Inicializar a renderização
+        renderLayout();
+
+        // Adicionar evento ao botão de confirmação
+        document.getElementById('confirmButton').addEventListener('click', confirmSelection);
+    </script>
+</body>
+</html>
